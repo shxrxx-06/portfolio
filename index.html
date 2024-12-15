@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranusha Ramesh - Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-color: #ccd6f6;
+            --text-secondary: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--accent-color), transparent);
+            opacity: 0.2;
+        }
+
+        .terminal-header {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 1rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .terminal-header:hover .dot {
+            transform: scale(1.3);
+        }
+
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-body {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 2rem;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+            transform: translateZ(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .terminal-body:hover {
+            transform: translateZ(10px);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--accent-color);
+            animation: blink 1.2s steps(2) infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            padding: 2rem;
+            background: var(--secondary-color);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, transparent, var(--accent-color), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile:hover::before {
+            opacity: 1;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(50%);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(3deg);
+            filter: grayscale(0%);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .stats {
+            background: rgba(100, 255, 218, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stats:hover {
+            background: rgba(100, 255, 218, 0.15);
+            transform: translateX(5px);
+        }
+
+        .education-card {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px) translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+        }
+
+        .education-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .education-card:hover::after {
+            opacity: 1;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0;
+            perspective: 1000px;
+        }
+
+        .skills-category {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 15px rgba(100, 255, 218, 0.1);
+        }
+
+        .skills-category::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .skills-category:hover::before {
+            opacity: 1;
+        }
+
+        .skills-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .skills-category:hover h3 {
+            transform: translateX(5px);
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .skills-list li:hover {
+            color: var(--text-color);
+            transform: translateX(10px);
+        }
+
+        .skills-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .skills-list li:hover::before {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        .tech-stack-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-item {
+            padding: 0.5rem 1rem;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--accent-color);
+        }
+
+        .tech-item:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .project-card {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transform-style: preserve-3d;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(2, 12, 27, 0.7);
+            border-color: var(--accent-color);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(100, 255, 218, 0.2),
+                transparent
+            );
+            transition: 0.6s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .social-links a:hover::before {
+            width: 100%;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .highlight:hover {
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        h1:hover, h2:hover, h3:hover {
+            color: var(--accent-color);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        p:hover {
+            color: var(--text-color);
+        }
+
+        .section {
+            margin: 4rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="terminal-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <div class="terminal-body">
+            <p>> Hello, World! I'm <span class="highlight">Ranusha Ramesh</span><span class="cursor"></span></p>
+            <p>> AI Solutions Architect | Full Stack Developer | BE CSE AI Student</p>
+        </div>
+
+        <div class="profile">
+            <img src="C:\Users\Ranu Ramesh\Desktop\portfolio\dp.jpg" alt="Ranusha Ramesh" class="profile-img">
+            <div>
+                <h1>Ranusha Ramesh</h1>
+                <p>I'm an enthusiastic undergraduate student with a strong passion for Artificial Intelligence and Web Development. Currently pursuing BE CSE AI at Sathyabama Institute Of Science And Technology, I combine technical expertise with strong leadership and communication skills.</p>
+                <div class="stats">
+                    <p>Current CGPA: <span class="highlight">8.62</span></p>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2>Education</h2>
+            <div class="education-card">
+                <h3>Sathyabama Institute Of Science And Technology</h3>
+                <p>BE CSE AI (2023-2027)</p>
+                <p>CGPA: 8.62</p>
+            </div>
+            <div class="education-card">
+                <h3>St. Alphonsa Matric Hr Secondary School</h3>
+                <p>Computer Science & Mathematics (2016-2023)</p>
+                <p>Percentage: 89%</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skills-category">
+                    <h3>Soft Skills</h3>
+                    <ul class="skills-list">
+                        <li>Leadership</li>
+                        <li>Effective Communication</li>
+                        <li>Teamwork</li>
+                        <li>Time Management</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skills-list">
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>JavaScript</li>
+                        <li>C</li>
+                        <li>C++</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h3>Frameworks and Tools</h3>
+                    <ul class="skills-list">
+                        <li>HTML</li>
+                        <li>Node.js</li>
+                        <li>SQL</li>
+                        <li>Prisma</li>
+                        <li>MongoDB</li>
+                        <li>Flask</li>
+                        <li>React</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Tech Stack</h2>
+            <div class="tech-stack-container">
+                <span class="tech-item">Python</span>
+                <span class="tech-item">JavaScript</span>
+                <span class="tech-item">React</span>
+                <span class="tech-item">Flask</span>
+                <span class="tech-item">Prisma</span>
+                <span class="tech-item">MongoDB</span>
+                <span class="tech-item">Tailwind CSS</span>
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">Tensor Flow</span>
+                <span class="tech-item">YOLO</span>
+                <span class="tech-item">ML & Data Preprocessing</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Experience</h2>
+            <div class="project-card">
+                <h3>MIT SQUARE - Team Lead & AI Solutions Architect</h3>
+                <p>Oct 2024 - Present</p>
+                <p>Developing PathGuide, an AI-driven traffic system using YOLOv11</p>
+            </div>
+            <div class="project-card">
+                <h3>ATF-2024</h3>
+                <p>Aug 2024 - Oct 2024</p>
+                <p>Ranked in the top 13% in Algo University Technology Fellowship</p>
+            </div>
+            <div class="project-card">
+                <h3>SIH-2024 - Web Developer</h3>
+                <p>Sep 2024 - Nov 2024</p>
+                <p>Developed fuzzy name conversion website and AI-driven institutional inspections</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>DRD (Donate Recycle Dispose)</h3>
+                    <p>A full-stack app enabling sustainable apparel with user authentication and profile management</p>
+                    <div class="tech-stack">
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">Axios</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Hand Sign Detection System</h3>
+                    <p>Real-time hand tracking system for sign language recognition with user-friendly interface</p>
+                    <div class="tech-stack">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">OpenCV</span>
+                        <span class="tech-item">cvzone</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>GeneProtect</h3>
+                    <p>A web application with CRUD operations and encrypted user data storage</p>
+                    <div class="tech-stack">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">Flask</span>
+                        <span class="tech-item">MySQL</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>QR Code Generator & Attendance Scanner</h3>
+                    <p>Automated attendance system with QR code generation and scanning</p>
+                    <div class="tech-stack">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">OpenCV</span>
+                        <span class="tech-item">Flask</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Canteen Management System</h3>
+                    <p>Responsive platform for menu browsing and order management</p>
+                    <div class="tech-stack">
+                        <span class="tech-item">React.js</span>
+                        <span class="tech-item">Tailwind CSS</span>
+                        <span class="tech-item">Js</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="social-links">
+            <a href="C:\Users\Ranu Ramesh\Desktop\portfolio\resume.pdf" target="_blank">Resume</a>
+            <a href="https://github.com/shxrxx-06" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/shxrxx-06-ranusha/" target="_blank">LinkedIn</a>
+            <a href="mailto:rameshranusha4@gmail.com">Email</a>
+            <a href="https://www.hackerrank.com/profile/rameshranusha4" target="_blank">HackerRank</a>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // Observe all sections and project cards
+            document.querySelectorAll('.section').forEach((section) => {
+                observer.observe(section);
+            });
+
+            // Enhanced hover effects for tech stack items
+            document.querySelectorAll('.tech-item').forEach(item => {
+                item.addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.1) translateY(-5px) rotate(3deg)';
+                    this.style.boxShadow = '0 5px 15px rgba(100, 255, 218, 0.3)';
+                });
+                item.addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1) translateY(0) rotate(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
