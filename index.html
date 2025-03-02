@@ -8,19 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* General Styles */
-        * {
-    box-sizing: border-box;
-    max-width: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5vw;
-    font-size: min(4vw, 18px);
-}
-
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -80,8 +67,6 @@ body {
             text-align: center;
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
             align-items: flex-start; /* Align items to the top */
             justify-content: center; /* Center content horizontally */
             gap: 40px; /* Space between image and text */
@@ -122,11 +107,6 @@ body {
         /* Buttons */
         .buttons {
             margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-            gap: 10px; /* Space between buttons */
-            justify-content: center;
-            
         }
 
         .buttons a {
@@ -137,9 +117,7 @@ body {
             color: white;
             border-radius: 5px; /* Rounded corners for a smoother look */
             transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and transform */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            flex: 1 1 auto;
-            min-width: 150px;/* Box shadow for depth */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
         }
 
         .buttons a:hover {
@@ -289,7 +267,6 @@ body {
             transition: box-shadow 0.3s ease; /* Smooth transition for box shadow */
             border-top: none; /* Remove any border above the footer */
             margin-top: 0;
-            gap: 10px;
         }
 
         /* Animations */
@@ -299,14 +276,16 @@ body {
         }
         /* Skills Container */
         .skills-container {
-            display: grid;
+            display: flex;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 1.5rem 0;
             perspective: 1000px;
+            justify-content: space-between;
         }
 
         .skills-category {
+            flex: 1;
             background: #1e1e1e; /* Dark background for skills category */
             padding: 1.5rem;
             border-radius: 15px;
@@ -340,6 +319,7 @@ body {
         }
 
         .skills-category h3 {
+            text-align: left;
             color: #00bcd4; /* Accent color for category headings */
             margin-bottom: 1rem;
             transition: transform 0.3s ease, color 0.3s ease;
@@ -355,6 +335,7 @@ body {
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: left;
         }
 
         .skills-list li {
@@ -523,144 +504,6 @@ body {
 .project-image img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 188, 212, 0.3);
-}
-        @media (max-width: 767px) {
-    header {
-        padding: 40px 20px; 
-        min-height: auto;/* Reduced padding for smaller screens */
-    }
-
-    header h1 {
-        font-size: 2rem; /* Smaller font size for mobile */
-    }
-
-    header p {
-        font-size: 1rem; /* Smaller font size for mobile */
-    }
-
-    .profile-pic {
-        width: 150px; /* Smaller profile picture for mobile */
-        margin-top: 10px; /* Reduced margin for mobile */
-    }
-    .buttons{
-        flex-direction: column;
-        gap: 10px;
-    }
-    .buttons a {
-        padding: 8px 16px; /* Smaller buttons for mobile */
-        font-size: 0.9rem; 
-        width: 100%
-        min-width: auto;/* Smaller font size for buttons */
-    }
-
-    .section {
-        padding: 20px; /* Reduced padding for sections */
-    }
-
-    .section h2 {
-        font-size: 1.8rem; /* Smaller heading size for mobile */
-    }
-
-    .section p {
-        font-size: 0.9rem; /* Smaller paragraph text for mobile */
-    }
-
-    .project-card {
-        padding: 15px; /* Reduced padding for project cards */
-    }
-
-    .project-content h3 {
-        font-size: 1.5rem; /* Smaller project title for mobile */
-    }
-
-    .project-content p {
-        font-size: 0.9rem; /* Smaller project description for mobile */
-    }
-
-    .project-image {
-        height: 150px; /* Smaller image height for mobile */
-    }
-
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Smaller skill cards for mobile */
-        gap: 15px; /* Reduced gap between skill cards */
-    }
-
-    .skill-card {
-        padding: 15px; /* Reduced padding for skill cards */
-    }
-
-    .skill-card h4 {
-        font-size: 1rem; /* Smaller skill title for mobile */
-    }
-
-    .skill-card p {
-        font-size: 0.9rem; /* Smaller skill description for mobile */
-    }
-
-    footer {
-        padding: 15px; /* Reduced padding for footer */
-    }
-
-    footer p {
-        font-size: 0.9rem; /* Smaller footer text for mobile */
-    }
-}
-/* Tablets (768px and above) */
-@media (min-width: 768px) {
-    header {
-        padding: 80px 20px;
-    }
-
-    header h1 {
-        font-size: 3rem;
-    }
-
-    header p {
-        font-size: 1.5rem;
-    }
-
-    .profile-pic {
-        width: 250px;
-    }
-
-    .project-card {
-        flex-direction: row;
-        gap: 30px;
-    }
-
-    .project-card.reverse {
-        flex-direction: row-reverse;
-    }
-
-    .project-image {
-        height: 250px;
-    }
-    .buttons {
-        flex-direction: row;
-    }
-}
-
-/* Desktops (1024px and above) */
-@media (min-width: 1024px) {
-    header {
-        padding: 100px 20px;
-    }
-
-    header h1 {
-        font-size: 3.5rem;
-    }
-
-    .project-card {
-        gap: 40px;
-    }
-
-    .project-image {
-        height: 300px;
-    }
-    .buttons {
-        gap: 20px;
-    }
 }
     </style>
 </head>
