@@ -514,6 +514,132 @@ body {
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 188, 212, 0.3);
 }
+        @media (max-width: 767px) {
+    header {
+        padding: 40px 20px; /* Reduced padding for smaller screens */
+    }
+
+    header h1 {
+        font-size: 2rem; /* Smaller font size for mobile */
+    }
+
+    header p {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+
+    .profile-pic {
+        width: 150px; /* Smaller profile picture for mobile */
+        margin-top: 10px; /* Reduced margin for mobile */
+    }
+
+    .buttons a {
+        padding: 8px 16px; /* Smaller buttons for mobile */
+        font-size: 0.9rem; /* Smaller font size for buttons */
+    }
+
+    .section {
+        padding: 20px; /* Reduced padding for sections */
+    }
+
+    .section h2 {
+        font-size: 1.8rem; /* Smaller heading size for mobile */
+    }
+
+    .section p {
+        font-size: 0.9rem; /* Smaller paragraph text for mobile */
+    }
+
+    .project-card {
+        padding: 15px; /* Reduced padding for project cards */
+    }
+
+    .project-content h3 {
+        font-size: 1.5rem; /* Smaller project title for mobile */
+    }
+
+    .project-content p {
+        font-size: 0.9rem; /* Smaller project description for mobile */
+    }
+
+    .project-image {
+        height: 150px; /* Smaller image height for mobile */
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Smaller skill cards for mobile */
+        gap: 15px; /* Reduced gap between skill cards */
+    }
+
+    .skill-card {
+        padding: 15px; /* Reduced padding for skill cards */
+    }
+
+    .skill-card h4 {
+        font-size: 1rem; /* Smaller skill title for mobile */
+    }
+
+    .skill-card p {
+        font-size: 0.9rem; /* Smaller skill description for mobile */
+    }
+
+    footer {
+        padding: 15px; /* Reduced padding for footer */
+    }
+
+    footer p {
+        font-size: 0.9rem; /* Smaller footer text for mobile */
+    }
+}
+/* Tablets (768px and above) */
+@media (min-width: 768px) {
+    header {
+        padding: 80px 20px;
+    }
+
+    header h1 {
+        font-size: 3rem;
+    }
+
+    header p {
+        font-size: 1.5rem;
+    }
+
+    .profile-pic {
+        width: 250px;
+    }
+
+    .project-card {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .project-card.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .project-image {
+        height: 250px;
+    }
+}
+
+/* Desktops (1024px and above) */
+@media (min-width: 1024px) {
+    header {
+        padding: 100px 20px;
+    }
+
+    header h1 {
+        font-size: 3.5rem;
+    }
+
+    .project-card {
+        gap: 40px;
+    }
+
+    .project-image {
+        height: 300px;
+    }
+}
     </style>
 </head>
 <body>
