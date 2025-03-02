@@ -80,6 +80,8 @@ body {
             text-align: center;
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             align-items: flex-start; /* Align items to the top */
             justify-content: center; /* Center content horizontally */
             gap: 40px; /* Space between image and text */
@@ -120,6 +122,11 @@ body {
         /* Buttons */
         .buttons {
             margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+            gap: 10px; /* Space between buttons */
+            justify-content: center;
+            
         }
 
         .buttons a {
@@ -130,7 +137,9 @@ body {
             color: white;
             border-radius: 5px; /* Rounded corners for a smoother look */
             transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and transform */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            flex: 1 1 auto;
+            min-width: 150px;/* Box shadow for depth */
         }
 
         .buttons a:hover {
@@ -280,6 +289,7 @@ body {
             transition: box-shadow 0.3s ease; /* Smooth transition for box shadow */
             border-top: none; /* Remove any border above the footer */
             margin-top: 0;
+            gap: 10px;
         }
 
         /* Animations */
@@ -516,7 +526,8 @@ body {
 }
         @media (max-width: 767px) {
     header {
-        padding: 40px 20px; /* Reduced padding for smaller screens */
+        padding: 40px 20px; 
+        min-height: auto;/* Reduced padding for smaller screens */
     }
 
     header h1 {
@@ -531,10 +542,15 @@ body {
         width: 150px; /* Smaller profile picture for mobile */
         margin-top: 10px; /* Reduced margin for mobile */
     }
-
+    .buttons{
+        flex-direction: column;
+        gap: 10px;
+    }
     .buttons a {
         padding: 8px 16px; /* Smaller buttons for mobile */
-        font-size: 0.9rem; /* Smaller font size for buttons */
+        font-size: 0.9rem; 
+        width: 100%
+        min-width: auto;/* Smaller font size for buttons */
     }
 
     .section {
@@ -620,6 +636,9 @@ body {
     .project-image {
         height: 250px;
     }
+    .buttons {
+        flex-direction: row;
+    }
 }
 
 /* Desktops (1024px and above) */
@@ -638,6 +657,9 @@ body {
 
     .project-image {
         height: 300px;
+    }
+    .buttons {
+        gap: 20px;
     }
 }
     </style>
