@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <title>Shxrxx - Portfolio</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
         
@@ -40,14 +43,7 @@
             text-align: justify;
             text-justify: inter-word;
         }
-        .loading-status {
-            position: absolute;
-            bottom: 140px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--primary-cyan);
-            opacity: 0.7;
-        }
+      
         /* Advanced Background with Neural Network Pattern */
         .neural-bg {
             position: fixed;
@@ -68,13 +64,7 @@
             animation: pulse-node 3s ease-in-out infinite;
         }
 
-        .neural-connection {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
-            transform-origin: left;
-            animation: data-flow 4s linear infinite;
-        }
+
 
         @keyframes pulse-node {
             0%, 100% { 
@@ -85,13 +75,6 @@
                 transform: scale(1.5);
                 box-shadow: 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-cyan);
             }
-        }
-
-        @keyframes data-flow {
-            0% { opacity: 0; transform: scaleX(0); }
-            20% { opacity: 1; }
-            80% { opacity: 1; transform: scaleX(1); }
-            100% { opacity: 0; transform: scaleX(1); }
         }
 
         /* Floating Geometric Shapes */
@@ -253,6 +236,12 @@
         .nav-links a:hover::before {
             left: 100%;
         }
+.neural-connection {
+    position: absolute;
+    height: 1px;
+    background: rgba(0, 217, 255, 0.3);
+    transform-origin: left center;
+}
 
         .nav-links a:hover {
             color: var(--primary-cyan);
@@ -1617,7 +1606,7 @@
                 <span></span>
                 <span></span>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -1633,7 +1622,7 @@
         <div class="hero-content">
             <div class="hero-greeting">Hello, World! I'm</div>
             <h1 class="hero-name">Ranusha Ramesh</h1>
-            <div class="hero-title">AI Solutions Architect | Full Stack Developer | Undergrad CSE AI Student  | ML Engineer | SIH 25 Finalist</div>
+            <div class="hero-title"></div>
             <p class="hero-description">
                 Radiant in web dev , Nurtured in AI - Shaping smarter tech - That defines me!
             </p>
@@ -2119,8 +2108,8 @@ interaction through muscle signals.
         </div>
         </div>
     </section>
-    <!-- Projects Section -->
-    <section id="projects" class="scroll-reveal">
+    <!-- Clubs Section -->
+    <section id="clubs" class="scroll-reveal">
         <h2 class="section-title">Clubs & Organizations</h2>
         <div class="projects-grid">
             <div class="project-card scroll-reveal-left">
@@ -2206,11 +2195,11 @@ Leading the planning and execution of technical events, workshops, and coding co
                     </div>
                 </div>
                 <div class="form-group">
-                    <input  name="text" type="text" class="form-input" placeholder=" ">
+                    <input  name="subject" type="text" class="form-input" placeholder=" ">
                     <label class="form-label">Subject</label>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-textarea" rows="6" name="text" placeholder=" " required></textarea>
+                    <textarea class="form-textarea" rows="6" name="message" placeholder=" " required></textarea>
                     <label class="form-label">Message</label>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
@@ -2280,7 +2269,7 @@ Leading the planning and execution of technical events, workshops, and coding co
                             
                             connection.style.left = nodeA.x + '%';
                             connection.style.top = nodeA.y + '%';
-                            connection.style.width = length + 'vw';
+                            connection.style.width = Math.min(length, 25) + '%';
                             connection.style.transform = `rotate(${angle}rad)`;
                             connection.style.animationDelay = Math.random() * 4 + 's';
                             
@@ -2401,57 +2390,14 @@ Leading the planning and execution of technical events, workshops, and coding co
                 });
             });
         }
-
-        // Enhanced Contact Form
-        function initContactForm() {
-            const form = document.querySelector('.contact-form');
-            const submitBtn = form.querySelector('.submit-btn');
-            
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Add loading animation
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<div class="loader" style="width: 20px; height: 20px; margin: 0 auto;"></div>';
-                submitBtn.disabled = true;
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    submitBtn.innerHTML = '✅ Message Sent Successfully!';
-                    submitBtn.style.background = 'linear-gradient(135deg, var(--accent-green), var(--primary-cyan))';
-                    
-                    // Reset form after success
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.background = 'linear-gradient(135deg, var(--primary-cyan), var(--primary-purple))';
-                        submitBtn.disabled = false;
-                        form.reset();
-                    }, 3000);
-                }, 2000);
-            });
-        }
-
-        // Parallax Effect for Hero Section
-        function initParallaxEffect() {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.hero-content');
-                
-                parallaxElements.forEach(element => {
-                    const speed = 0.5;
-                    element.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
-        }
-
         // Typing Animation for Hero Title
         function initTypingAnimation() {
             const titles = [
-                'AI Solutions Architect',
+                'ML Solutions Architect',
                 'Full Stack Developer', 
                 'Undergrad CSE AI Student',
                 'Problem Solver',
-                'Tech Innovator'
+                'Tech Innovator','SIH Finalist 2025'
             ];
             
             const titleElement = document.querySelector('.hero-title');
@@ -2490,36 +2436,18 @@ Leading the planning and execution of technical events, workshops, and coding co
         // Mobile Navigation
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        const navOverlay = document.getElementById('navOverlay');
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            navOverlay.classList.toggle('active');
         });
 
-        navOverlay.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            navOverlay.classList.remove('active');
-        });
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                navOverlay.classList.remove('active');
             });
-        });
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
         });
         // Skill Progress Animation
         function animateSkillProgress() {
@@ -2582,141 +2510,6 @@ Leading the planning and execution of technical events, workshops, and coding co
                 });
             });
         }
- // Track actual loading progress
-        const loadingManager = {
-            totalTasks: 0,
-            completedTasks: 0,
-            progressBar: null,
-            statusText: null,
-
-            init() {
-                this.progressBar = document.getElementById('progressBar');
-                this.statusText = document.getElementById('loadingStatus');
-            },
-
-            addTask(name) {
-                this.totalTasks++;
-            },
-
-            completeTask(name) {
-                this.completedTasks++;
-                const progress = (this.completedTasks / this.totalTasks) * 100;
-                
-                if (this.progressBar) {
-                    this.progressBar.style.width = progress + '%';
-                }
-                
-                if (this.statusText) {
-                    this.statusText.textContent = name;
-                }
-            },
-
-            isComplete() {
-                return this.completedTasks >= this.totalTasks;
-            }
-        };
-
-        // Create intro particles
-        function createIntroParticles() {
-            const container = document.getElementById('introParticles');
-            const particleCount = 30;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'intro-particle';
-                
-                const randomX = (Math.random() - 0.5) * 200;
-                particle.style.cssText = `
-                    left: ${Math.random() * 100}%;
-                    --x-drift: ${randomX}px;
-                    animation-delay: ${Math.random() * 2}s;
-                    animation-duration: ${Math.random() * 2 + 2}s;
-                `;
-                
-                const colors = ['var(--primary-cyan)', 'var(--primary-purple)', 'var(--primary-pink)'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                container.appendChild(particle);
-            }
-            
-            loadingManager.completeTask('Creating particles...');
-        }
-
-        // Create neural network
-        function createNeuralNetwork() {
-            return new Promise((resolve) => {
-                const neuralBg = document.getElementById('neuralBg');
-                const nodeCount = 12;
-                const fragment = document.createDocumentFragment();
-
-                for (let i = 0; i < nodeCount; i++) {
-                    const node = document.createElement('div');
-                    node.className = 'neural-node';
-                    node.style.cssText = `
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        animation-delay: ${Math.random() * 3}s;
-                    `;
-                    fragment.appendChild(node);
-                }
-
-                neuralBg.appendChild(fragment);
-                loadingManager.completeTask('Building neural network...');
-                resolve();
-            });
-        }
-
-        // Simulate loading your heavy components
-        async function loadHeavyComponents() {
-            loadingManager.addTask('particles');
-            loadingManager.addTask('neural');
-            loadingManager.addTask('fonts');
-            loadingManager.addTask('ready');
-
-            // Load in sequence
-            createIntroParticles();
-            
-            await new Promise(resolve => setTimeout(resolve, 500));
-            await createNeuralNetwork();
-            
-            await new Promise(resolve => setTimeout(resolve, 300));
-            loadingManager.completeTask('Loading fonts...');
-            
-            await new Promise(resolve => setTimeout(resolve, 400));
-            loadingManager.completeTask('Portfolio ready!');
-
-            // Small delay before hiding intro
-            await new Promise(resolve => setTimeout(resolve, 500));
-        }
-
-        // Hide intro when everything is loaded
-        function hideIntro() {
-            const introOverlay = document.getElementById('introOverlay');
-            introOverlay.classList.add('hidden');
-            
-            // Remove from DOM after animation
-            setTimeout(() => {
-                introOverlay.remove();
-            }, 800);
-        }
-
-        // Main initialization
-        document.addEventListener('DOMContentLoaded', async () => {
-            loadingManager.init();
-            
-            // Load everything while showing intro
-            await loadHeavyComponents();
-            
-            // Hide intro when complete
-            hideIntro();
-        });
-
-        // If page loads super fast (cached), hide intro quickly
-        window.addEventListener('load', () => {
-            if (loadingManager.isComplete()) {
-                setTimeout(hideIntro, 300);
-            }
-        });
         // Add glitch animation
         const glitchCSS = `
             @keyframes glitch {
@@ -2802,7 +2595,7 @@ Leading the planning and execution of technical events, workshops, and coding co
             }
             
             // Create particles continuously
-            setInterval(createParticle, 300);
+            setInterval(createParticle, 600);
         }
 
         // Add float up animation
@@ -2833,31 +2626,25 @@ Leading the planning and execution of technical events, workshops, and coding co
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize loading screen
             initLoadingScreen();
-            
-            // Create background animations
-            createNeuralNetwork();
+          if (window.innerWidth > 768) {
+    createNeuralNetwork();
+}
+
             createGeometricShapes();
-            createAdvancedParticles();
-            
+            if (window.innerWidth > 768) {
+    createAdvancedParticles();
+}
             // Initialize interactions
             initSmoothScrolling();
             initScrollAnimations();
-            initCustomCursor();
-            initContactForm();
-            initParallaxEffect();
+           if (!('ontouchstart' in window)) {
+                initCustomCursor();
+}
             initTypingAnimation();
             animateSkillProgress();
             initProjectCardEffects();
             initScrollProgress();
             
-            // Add scroll event listener
-            window.addEventListener('scroll', handleNavbarScroll);
-            
-            // Add resize listener for responsive adjustments
-            window.addEventListener('resize', () => {
-                // Reinitialize cursor on resize
-                initCustomCursor();
-            });
         });
 
         // Performance optimization - Throttle scroll events
@@ -2874,24 +2661,11 @@ Leading the planning and execution of technical events, workshops, and coding co
         }
 
         // Apply throttling to scroll-heavy functions
-        window.addEventListener('scroll', throttle(handleNavbarScroll, 10));
+        window.addEventListener('scroll', throttle(handleNavbarScroll, 50));
         
-        // Add intersection observer for performance
-        const performanceObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                } else {
-                    entry.target.classList.remove('in-view');
-                }
-            });
-        });
+     
 
-        // Observe all sections for performance optimization
-        document.querySelectorAll('section').forEach(section => {
-            performanceObserver.observe(section);
-        });
+        
     </script>
 </body>
 </html>
-
